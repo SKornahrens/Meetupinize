@@ -1,0 +1,13 @@
+html, body, #UserInput {
+  height: 100%;
+}
+
+#UserInput {
+  background: red;
+}
+
+#LinkAggro{
+  background: blue;
+  height: 400px;
+  margin: 0 auto;
+}
