@@ -103,24 +103,45 @@ $("#GetData").click(function(event){
           var date = new Date(EventObject[i].time)
           var month = date.getUTCMonth() + 1; //months from 1-12
 
+          //Converts .getUTCDay into an actual day of the week to create var newdate
           var weekday = new Array();
-            weekday[0] = "Sunday";
-            weekday[1] = "Monday";
-            weekday[2] = "Tuesday";
-            weekday[3] = "Wednesday";
-            weekday[4] = "Thursday";
-            weekday[5] = "Friday";
-            weekday[6] = "Saturday";
+          weekday[0] = "Sunday";
+          weekday[1] = "Monday";
+          weekday[2] = "Tuesday";
+          weekday[3] = "Wednesday";
+          weekday[4] = "Thursday";
+          weekday[5] = "Friday";
+          weekday[6] = "Saturday";
           var dayofweek = weekday[date.getUTCDay()];
           var day = date.getUTCDate();
           var year = date.getUTCFullYear();
           var newdate = dayofweek + " " + month + "/" + day + "/" + year;
-          
+
+          //Converts given time into AM PM time to create var time
+          var d = new Date(EventObject[i].time);
+          var hh = d.getHours();
+          var m = d.getMinutes();
+          var dd = "AM";
+          var h = hh;
+          if (h >= 12) {
+            h = hh-12;
+            dd = "PM";
+          }
+          if (h == 0) {
+            h = 12;
+          }
+          m = m<10?"0"+m:m;
+          h = h<10?+h:h;
+          var time = h+":"+m+" "+dd
+
+
+
 
           $("#Event" + count + " .GroupName").text(EventObject[i].group.name);
           $("#Event" + count + " .EventName").text(EventObject[i].name);
           $("#Event" + count + " .EventLocation").text(EventObject[i].venue.name);
           $("#Event" + count + " .EventDate").text(newdate);
+          $("#Event" + count + " .EventTime").text(time);
           count++;
         }
       }
