@@ -1,13 +1,35 @@
-html, body, #UserInput {
+/** {
+
+}*/
+
+html, body {
   height: 100%;
 }
 
 #UserInput {
-  background: red;
 }
 
-#LinkAggro{
-  background: blue;
-  height: 400px;
-  margin: 0 auto;
+#GroupAggro, #LinkAggro{
+  border-style: solid;
+  height: 100%;
+}
+
+#TableHeader {
+  display: flex;
+  justify-content: space-between;
+}
+
+[contenteditable=true]:empty:before {
+  content: attr(placeholder);
+  display: block; /* For Firefox */
+  color: #d1d1d1;
+}
+
+.Event {
+  margin-top: 1em;
+  border-style: dotted;
+}
+
+#Event1 .EventName {
+  color: red;
 }
