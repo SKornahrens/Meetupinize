@@ -72,22 +72,43 @@ var MeetupKey = "6a3426d1c7d3565234713b22683948";
 var EventData = [];
 var GroupData = [];
 var GroupURLs = [];
+var GroupSpecificData = [];
+
+var GroupEventPairs = {};
 //var count is used to create unique IDs for each event appended to #ListAggro
 var count = 1;
 var PassedUrl;
+
+
+// Fetch Specific Event Data https://api.meetup.com/2/events?key=6a3426d1c7d3565234713b22683948&group_urlname=Denver-Tech-Design-Community&event_id=241350598&sign=true
+//
+
+// Fetch specific Group Data https://api.meetup.com/2/groups?key=6a3426d1c7d3565234713b22683948&group_urlname=Denver-Tech-Design-Community&sign=true
+//
+
 
 //Gets Group Event Data for Each Group Given
 $("#GetData").click(function(){
   for (var i = 0; i < GroupURLs.length; i++) {
     //PassedUrl = Group Name represented by an index of GroupURLs
     PassedUrl = GroupURLs[i];
-    $.ajax({
-      method: "GET",
-      url: "https://galvanize-cors-proxy.herokuapp.com/https://api.meetup.com/2/events?key=" + MeetupKey + "&group_urlname=" + PassedUrl + "&sign=true"
-    })
-    .then(function (data) {
+    $.when(
+      $.ajax({
+        method: "GET",
+        url: "https://galvanize-cors-proxy.herokuapp.com/https://api.meetup.com/2/groups?key=" + MeetupKey + "&group_urlname=" + PassedUrl + "&sign=true"
+      }),
+      $.ajax({
+        method: "GET",
+        url: "https://galvanize-cors-proxy.herokuapp.com/https://api.meetup.com/2/events?key=" + MeetupKey + "&group_urlname=" + PassedUrl + "&sign=true"
+      })
+    )
+    .then(function (GetGroupData, GetEventData) {
+      GroupSpecificData = [];
+      GroupSpecificData.push(GetGroupData[0].results[0]);
+
       EventData = [];
-      EventData.push(data.results);
+      EventData.push(GetEventData[0].results);
+
       var $EVENT = $('#LinkAggro');
       for (var j = 0; j < EventData.length; j++) {
         var EventObject = EventData[j];
@@ -137,6 +158,26 @@ $("#GetData").click(function(){
           $("#Event" + count + " .EventName").text(EventObject[x].name);
           $("#Event" + count + " .EventID").text(EventObject[x].id);
 
+          GroupEventPairs[GroupSpecificData[0].name] = [EventObject[x].id];
+
+
+          //Group Photo
+
+          if (!GroupSpecificData[0].group_photo) {
+            $("#Event" + count + " .PhotoLink").attr('src', "http://via.placeholder.com/100x100");
+            $("#Event" + count + " .PhotoLink").attr('alt', GroupSpecificData[0].name + " has no logo");
+          } else {
+            $("#Event" + count + " .PhotoLink").attr('src', GroupSpecificData[0].group_photo.thumb_link);
+            $("#Event" + count + " .PhotoLink").attr('alt', GroupSpecificData[0].name + " logo");
+          }
+
+          // if (GroupSpecificData[0].name === EventObject[x].group.name) {
+          //  $("#Event" + count + " .GroupPhoto").attr('src', GroupSpecificData[0].group_photo.thumb_link);
+          //   $("#Event" + count + " .GroupPhoto").attr('alt', GroupSpecificData[0].name + " logo");
+          // }
+
+
+
           //if statement to check if the EventData Object contains a venue key
           if (!EventObject[x].venue) {
             $("#Event" + count + " .EventLocation").text("Location Not Selected");
@@ -165,7 +206,9 @@ $(".Event").click(function(){
 //Create array containing Event Information
 $("#GetSelectedEvents").click(function() {
   $(".EventSelected").each(function (index){
-    console.log(index + ": " + $(this).text());
+
+
+    // console.log(index + ": " + $(this).text());
     SelectedEvents.push(index + ": " + $(this).text());
 
   })

@@ -29,3 +29,8 @@ html, body {
   margin-top: 1em;
   border-style: dotted;
 }
+
+.GroupPhoto{
+  display: inline-block;
+  width: 100px;
+}
