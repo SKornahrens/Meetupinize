@@ -64,7 +64,7 @@
               </tr> -->
 
               <!-- Hidden Table Row that is activated when hitting Add Link button -->
-              <tr class="hide">
+              <tr class="hide row">
                 <td id="EnterGroupHere" contenteditable="true" placeholder="Ex: https://www.meetup.com/Denver-Tech-Design-Community/"></td>
                 <td>
                   <a id="RemoveGroup" class="btn-floating waves-effect waves-light red"><i class="material-icons small">remove</i></a>
@@ -74,11 +74,12 @@
           </div>
 
         </div>
-        <a id="GetData" class="waves-effect waves-light btn center">Get Group Events</a>
-        <a id="CreateList" class="waves-effect waves-light btn center">Create List of Events</a>
+        <a id="GetData" class="waves-effect waves-light btn center">Create List of Events</a>
       </form>
     </div>
 
+
+<!--Div containing all Event Information-->
     <div class="row">
       <div id="LinkAggro" class="col s12 m10 l10 offset-l1">
 
@@ -94,11 +95,11 @@
               </div>
               <div class="EventName col l8">
               </div>
+              <div class="EventID col l4">
+              </div>
             </div>
             <div class="row">
-              <div class="EventDate col l4">
-              </div>
-              <div class="EventTime col l4">
+              <div class="EventTimeDate col l4">
               </div>
               <div class="EventLocation col l4">
               </div>
@@ -109,11 +110,14 @@
       </div>
     </div>
   </div>
+  <a id="GetSelectedEvents" class="waves-effect waves-light btn center">Capture Events</a>
+  <p id="EventLog"></p>
 
   </main>
 
 
 
+<!--Footer-->
   <footer class="page-footer">
            <div class="container">
              <div class="row">
