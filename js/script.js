@@ -191,7 +191,7 @@ $("#GetData").click(function(){
 });
 
 //Event Listener for highlighting tables
-var SelectedEvents = {};
+var SelectedEvents = [];
 $(".Event").click(function(){
   $(this).toggleClass("teal EventSelected");
 });
@@ -201,9 +201,13 @@ $("#GetSelectedEvents").click(function() {
   $(".EventSelected").each(function (){
     for (var e = 0; e < Object.keys(GroupEventPairs).length; e++) {
       if (("#" + this.id) === Object.keys(GroupEventPairs)[e]) {
-        console.log (Object.keys(GroupEventPairs)[e]);
-        SelectedEvents[Object.keys(GroupEventPairs)[e]] = [];
-        SelectedEvents[Object.keys(GroupEventPairs)[e]].push(Object.values(GroupEventPairs)[e]);
+        // console.log (Object.keys(GroupEventPairs)[e]);
+        // SelectedEvents[Object.keys(GroupEventPairs)[e]] = [];
+        // SelectedEvents[Object.keys(GroupEventPairs)[e]].push(Object.values(GroupEventPairs)[e]);
+        var Events = {};
+        var Keys = Object.values(GroupEventPairs)[e][0];
+        Events[Keys] = Object.values(GroupEventPairs)[e][1];
+        SelectedEvents.push(Events);
         //if statement end
       }
       //for loop end
@@ -211,14 +215,4 @@ $("#GetSelectedEvents").click(function() {
     //comparing selections to keys in GroupEventPairs end
   })
   // GetSelectedEvents End
-});
-
-function FindEventPairs(arraytocheck, value) {
-  return value.some(function(acvalue) {
-    return arraytocheck.indexOf(acvalue) >= 0;
-  })
-};
-
-$("#RunSearch").click(function() {
-
 });
