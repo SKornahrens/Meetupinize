@@ -73,12 +73,11 @@ var EventData = [];
 var GroupData = [];
 var GroupURLs = [];
 var GroupSpecificData = [];
-
 var GroupEventPairs = {};
+var TestGroup = {};
 //var count is used to create unique IDs for each event appended to #ListAggro
 var count = 1;
 var PassedUrl;
-
 
 // Fetch Specific Event Data https://api.meetup.com/2/events?key=6a3426d1c7d3565234713b22683948&group_urlname=Denver-Tech-Design-Community&event_id=241350598&sign=true
 //
@@ -158,11 +157,7 @@ $("#GetData").click(function(){
           $("#Event" + count + " .EventName").text(EventObject[x].name);
           $("#Event" + count + " .EventID").text(EventObject[x].id);
 
-          GroupEventPairs[GroupSpecificData[0].name] = [EventObject[x].id];
-
-
           //Group Photo
-
           if (!GroupSpecificData[0].group_photo) {
             $("#Event" + count + " .PhotoLink").attr('src', "http://via.placeholder.com/100x100");
             $("#Event" + count + " .PhotoLink").attr('alt', GroupSpecificData[0].name + " has no logo");
@@ -170,20 +165,19 @@ $("#GetData").click(function(){
             $("#Event" + count + " .PhotoLink").attr('src', GroupSpecificData[0].group_photo.thumb_link);
             $("#Event" + count + " .PhotoLink").attr('alt', GroupSpecificData[0].name + " logo");
           }
-
-          // if (GroupSpecificData[0].name === EventObject[x].group.name) {
-          //  $("#Event" + count + " .GroupPhoto").attr('src', GroupSpecificData[0].group_photo.thumb_link);
-          //   $("#Event" + count + " .GroupPhoto").attr('alt', GroupSpecificData[0].name + " logo");
-          // }
-
-
-
           //if statement to check if the EventData Object contains a venue key
           if (!EventObject[x].venue) {
             $("#Event" + count + " .EventLocation").text("Location Not Selected");
           } else {
             $("#Event" + count + " .EventLocation").text(EventObject[x].venue.name);
           }
+
+          //Creates Object Key Event# with array value Group Name and Event ID numbers for each event
+          GroupEventPairs["#Event" + count] = [];
+          GroupEventPairs["#Event" + count].push(EventObject[x].group.urlname);
+          GroupEventPairs["#Event" + count].push(parseInt(EventObject[x].id));
+
+
           //count iterates so loops to create a new Event id for each Event
           count++;
         }
@@ -191,7 +185,6 @@ $("#GetData").click(function(){
       }
       //end of .then(function (data)
     })
-
     //end of get data for loop
   };
   //end of onclick event at #GetData
@@ -206,13 +199,19 @@ $(".Event").click(function(){
 //Create array containing Event Information
 $("#GetSelectedEvents").click(function() {
   $(".EventSelected").each(function (index){
-
-
-    // console.log(index + ": " + $(this).text());
-    SelectedEvents.push(index + ": " + $(this).text());
-
+    SelectedEvents.push("#" + this.id);
   })
+});
 
+function FindEventPairs(arraytocheck, value) {
+  return value.some(function(acvalue) {
+    return arraytocheck.indexOf(acvalue) >= 0;
+  })
+};
 
+$("#RunSearch").click(function() {
+  for (var e = 0; e < SelectedEvents.length; e++) {
+    
 
+  }
 });
