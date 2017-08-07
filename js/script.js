@@ -1,3 +1,9 @@
+var SelectedEvents = [];
+
+$(document).ready(function() {
+
+
+
 $('.datepicker').pickadate({
   selectMonths: true, // Creates a dropdown to control month
   selectYears: 15, // Creates a dropdown of 15 years to control year,
@@ -79,15 +85,13 @@ var TestGroup = {};
 var count = 1;
 var PassedUrl;
 
-// Fetch Specific Event Data https://api.meetup.com/2/events?key=6a3426d1c7d3565234713b22683948&group_urlname=Denver-Tech-Design-Community&event_id=241350598&sign=true
-//
-
-// Fetch specific Group Data https://api.meetup.com/2/groups?key=6a3426d1c7d3565234713b22683948&group_urlname=Denver-Tech-Design-Community&sign=true
-//
-
 
 //Gets Group Event Data for Each Group Given
 $("#GetData").click(function(){
+  //Saves Start and End Dates;
+  var StartDate = new Date($('#StartDate').val());
+  var EndDate = new Date($('#EndDate').val());
+  //Loops through given Group URLs
   for (var i = 0; i < GroupURLs.length; i++) {
     //PassedUrl = Group Name represented by an index of GroupURLs
     PassedUrl = GroupURLs[i];
@@ -117,7 +121,20 @@ $("#GetData").click(function(){
           $EVENT.find('.EventList').append($clone);
 
           //Date Creation before assigning to EventLocation and EventTime
-          var date = new Date(EventObject[x].time)
+          console.log("-------");
+          console.log("Start Date");
+          console.log(StartDate);
+          console.log("End Date");
+          console.log(EndDate);
+          console.log("Event date and time:");
+          console.log(new Date(EventObject[x].time));
+          var date = new Date(EventObject[x].time);
+
+          if (date >= StartDate && date <= EndDate ) {
+            console.log("Falls between start and end dates");
+          } else {
+            console.log("Does not fall between start and end dates");
+          }
           var month = date.getUTCMonth() + 1;
 
           //Converts .getUTCDay into an actual day of the week to create var newdate
@@ -155,7 +172,9 @@ $("#GetData").click(function(){
           //Event Group, Event Name, and Event ID
           $("#Event" + count + " .GroupName").text(EventObject[x].group.name);
           $("#Event" + count + " .EventName").text(EventObject[x].name);
-          $("#Event" + count + " .EventID").text(EventObject[x].id);
+
+          //Can save Event ID to a div but unneeded by user
+          // $("#Event" + count + " .EventID").text(EventData[x].id);
 
           //Group Photo
           if (!GroupSpecificData[0].group_photo) {
@@ -175,7 +194,7 @@ $("#GetData").click(function(){
           //Creates Object Key Event# with array value Group Name and Event ID numbers for each event
           GroupEventPairs["#Event" + count] = [];
           GroupEventPairs["#Event" + count].push(EventObject[x].group.urlname);
-          GroupEventPairs["#Event" + count].push(parseInt(EventObject[x].id));
+          GroupEventPairs["#Event" + count].push(EventObject[x].id);
 
 
           //count iterates so loops to create a new Event id for each Event
@@ -191,28 +210,47 @@ $("#GetData").click(function(){
 });
 
 //Event Listener for highlighting tables
-var SelectedEvents = [];
+
 $(".Event").click(function(){
   $(this).toggleClass("teal EventSelected");
 });
+var URLofGroups;
 
 //Create array containing Event Information
 $("#GetSelectedEvents").click(function() {
   $(".EventSelected").each(function (){
     for (var e = 0; e < Object.keys(GroupEventPairs).length; e++) {
       if (("#" + this.id) === Object.keys(GroupEventPairs)[e]) {
-        // console.log (Object.keys(GroupEventPairs)[e]);
-        // SelectedEvents[Object.keys(GroupEventPairs)[e]] = [];
-        // SelectedEvents[Object.keys(GroupEventPairs)[e]].push(Object.values(GroupEventPairs)[e]);
+
+        //Object Setup with Group: and EventID: as keys
         var Events = {};
-        var Keys = Object.values(GroupEventPairs)[e][0];
-        Events[Keys] = Object.values(GroupEventPairs)[e][1];
+        var Group = "Group";
+        var EventID = "EventID";
+        Events[Group] = Object.values(GroupEventPairs)[e][0];
+        Events[EventID] = Object.values(GroupEventPairs)[e][1];
         SelectedEvents.push(Events);
-        //if statement end
+      //if statement end
       }
       //for loop end
     }
+
     //comparing selections to keys in GroupEventPairs end
   })
+  URLofGroups = encodeURI(JSON.stringify(SelectedEvents));
+  console.log(URLofGroups);
+  console.log(JSON.parse(decodeURI(URLofGroups)));
+  window.open("shareablelink.html?" + URLofGroups)
   // GetSelectedEvents End
 });
+
+
+//end of document ready
+});
+
+
+
+// Fetch Specific Event Data https://api.meetup.com/2/events?key=6a3426d1c7d3565234713b22683948&group_urlname=Denver-Tech-Design-Community&event_id=241350598&sign=true
+//
+
+// Fetch specific Group Data https://api.meetup.com/2/groups?key=6a3426d1c7d3565234713b22683948&group_urlname=Denver-Tech-Design-Community&sign=true
+//

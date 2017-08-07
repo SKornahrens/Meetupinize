@@ -28,12 +28,14 @@
             <input id="NameInput" type="text" name="Name" placeholder="Your Name">
             <label for="NameInput">Who's Sharing</label>
           </div>
+
+          <!--Date Selction for Start and End  -->
           <div class="input-field col s3">
-            <input type="text" class="datepicker">
+            <input id="StartDate" type="text" class="datepicker">
             <label for="NameInput">Start Date</label>
           </div>
-          <div class="input-field col s3">
-            <input type="text" class="datepicker">
+          <div  class="input-field col s3">
+            <input id="EndDate" type="text" class="datepicker">
             <label for="NameInput">End Date</label>
           </div>
         </div>
@@ -99,10 +101,11 @@
             </div>
           </div>
 
+        <!-- Can save Event ID to a div but unneeded by user
         <div class="row">
           <div class="EventID col l1">
           </div>
-        </div>
+        </div> -->
           <div class="row">
             <div class="EventTimeDate col l4">
             </div>
@@ -116,8 +119,6 @@
   </div>
 </div>
 <a id="GetSelectedEvents" class="waves-effect waves-light btn center">Capture Events</a>
-<p id="EventLog"></p>
-
 </main>
 
 
