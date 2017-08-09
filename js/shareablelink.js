@@ -128,3 +128,9 @@ $(".Event")
 
 //document ready end
 });
+
+$("#CreateTinyURL").click(function() {
+  $.get("https://galvanize-cors-proxy.herokuapp.com/http://tinyurl.com/api-create.php?url=" + window.location.href, function(tinyurl){
+  $("#TinyUrlHeader").find('h6').text("Upcoming Events worth your time: " + tinyurl);
+});
+});

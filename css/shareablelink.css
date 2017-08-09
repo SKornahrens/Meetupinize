@@ -102,3 +102,22 @@ a {
   text-decoration: none;
   color: black;
 }
+
+#TinyUrlHeader {
+  color: white;
+  /*margin: 1em;*/
+  /*width: 100%;*/
+  position: absolute;
+}
+
+.TinyNote {
+  margin-left: .5em;
+}
+
+.Copy {
+  margin: 0;
+}
+
+.RemoveMargin{
+  margin: 0;
+}
