@@ -5,11 +5,10 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <!--Import materialize.css-->
   <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
-  <!--Link master.css-->
-  <link type="text/css" rel="stylesheet" href="css/master.css"/>
   <!-- Compiled and minified CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/css/materialize.min.css">
-  <!-- Compiled and minified JavaScript -->
+  <!--Link master.css-->
+  <link type="text/css" rel="stylesheet" href="css/master.css"/>
   <title>Meetupinize</title>
 
   <!--Let browser know website is optimized for mobile-->
@@ -17,33 +16,31 @@
 </head>
 
 <body>
-  <main  class="container">
-    <h1 class="header center">Meetupinize</h1>
-    <h5 class="header center">Sharing Multiple Upcoming Meetup.com Events Made Easy</h5>
 
+    <div class="Headers">
+      <h1 class="header center NameofSite">Meetupinize</h1>
+      <h5 class="header center DescofSite">Sharing Multiple Upcoming Meetup Events Made Easy</h5>
+    </div>
+<main class="container">
     <div id="UserInput" class="row">
       <div class="row">
-        <form class="col s12 m10 l10 offset-l1" action="index.html" method="post">
-          <div class="input-field col s4">
-            <input id="NameInput" type="text" name="Name" placeholder="Your Name">
-            <label for="NameInput">Who's Sharing</label>
-          </div>
-
+        <form class="col s12 m10 l12" action="index.html" method="post">
           <!--Date Selction for Start and End  -->
-          <div class="input-field col s3">
+          <div class="input-field col s3 m3 l5 offset-l1">
             <input id="StartDate" type="text" class="datepicker">
             <label for="NameInput">Start Date</label>
           </div>
-          <div  class="input-field col s3">
+          <div  class="input-field col s3 m3 l5">
             <input id="EndDate" type="text" class="datepicker">
             <label for="NameInput">End Date</label>
           </div>
         </div>
 
-        <div id="GroupAggro" class="col s12 m10 l10 offset-l1">
-          <div id="TableHeader" class="TableHeader">
-            <h5>Add a Meetup.com Group Link</h5>
+        <div id="GroupAggro" class="col s12 m10 l10 offset-l1 z-depth-2">
+          <div id="TableHeader" class="TableHeader col l6">
+
             <a id="AddGroup" class="btn-floating waves-effect waves-light red"><i class="material-icons small">add</i></a>
+            <h5 class="">Add a Meetup.com Group Link</h5>
           </div>
 
           <!--Editable Group Table-->
@@ -52,21 +49,8 @@
               <tr>
                 <th class="hide">Group</th>
               </tr>
-              <tr class="">
-                <td id="EnterGroupHere" contenteditable="true" placeholder="Ex: https://www.meetup.com/Denver-Tech-Design-Community/">https://www.meetup.com/learn-to-code-colorado/</td>
-                <td>
-                  <a id="RemoveGroup" class="btn-floating waves-effect waves-light red"><i class="material-icons small">remove</i></a>
-                </td>
-              </tr>
-              <!-- <tr class="">
-              <td id="EnterGroupHere" contenteditable="true" placeholder="Ex: https://www.meetup.com/Denver-Tech-Design-Community/">https://www.meetup.com/Denver-IASA/</td>
-              <td>
-              <a id="RemoveGroup" class="btn-floating waves-effect waves-light red"><i class="material-icons small">remove</i></a>
-            </td>
-          </tr> -->
-
           <!-- Hidden Table Row that is activated when hitting Add Link button -->
-          <tr class="hide row">
+          <tr class="hide GroupPosted">
             <td id="EnterGroupHere" contenteditable="true" placeholder="Ex: https://www.meetup.com/Denver-Tech-Design-Community/"></td>
             <td>
               <a id="RemoveGroup" class="btn-floating waves-effect waves-light red"><i class="material-icons small">remove</i></a>
@@ -76,28 +60,31 @@
       </div>
 
     </div>
-    <a id="GetData" class="waves-effect waves-light btn center">Create List of Events</a>
+    <div class="ButtonDiv">
+      <a id="GetData" class="waves-effect waves-light btn col l4 offset-l4 red">Create List of Events</a>
+    </div>
   </form>
 </div>
 
 
 <!--Div containing all Event Information-->
 <div class="row">
-  <div id="LinkAggro" class="col s12 m10 l10 offset-l1">
-
-    <div class="EventList">
-
-      <div class="col s12 m10 l10 offset-l1 Event waves-effect waves-teal hide">
+  <div id="LinkAggro" class="col s12 m11 l12 hide">
+    <div class="EventList z-depth-2">
+      <div class="col s12 m12 l12 z-depth-2 Event waves-effect waves-light-blue white hide">
         <div class="">
-          <div class="row">
-            <div class="GroupPhoto col l2">
-              <img src="http://via.placeholder.com/100x100" alt="placeholder" class="PhotoLink">
+          <div class="row GroupInfo">
+            <div class="GroupPhoto col l3">
+              <img src="" alt="placeholder" class="PhotoLink">
             </div>
-            <div>
+            <div class=" GroupName col l9">
+              <h5 class=""></h5>
             </div>
-            <div class="GroupName col l10">
-            </div>
-            <div class="EventName col l10">
+          </div>
+
+          <div class="EventInfo row">
+            <div class="col l12 EventName">
+              <h5></h5>
             </div>
           </div>
 
@@ -107,9 +94,13 @@
           </div>
         </div> -->
           <div class="row">
-            <div class="EventTimeDate col l4">
+            <div class=" EventTimeDate col l8">
+              <h6>Date and Time:</h6>
+              <p></p>
             </div>
             <div class="EventLocation col l4">
+              <h6>Location:</h6>
+              <p></p>
             </div>
           </div>
         </div>
@@ -117,35 +108,22 @@
 
     </div>
   </div>
+  <div class=" ButtonDiv">
+    <a id="GetSelectedEvents" class="waves-effect waves-light btn col l4 offset-l4 hide red">Create Shareable Link</a>
+  </div>
 </div>
-<a id="GetSelectedEvents" class="waves-effect waves-light btn center">Capture Events</a>
+
+
 </main>
 
 
 
 <!--Footer-->
-<footer class="page-footer">
-  <div class="container">
-    <div class="row">
-      <div class="col l6 s12">
-        <h5 class="white-text">Footer Content</h5>
-        <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
-      </div>
-      <div class="col l4 offset-l2 s12">
-        <h5 class="white-text">Links</h5>
-        <ul>
-          <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
-          <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
-          <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
-          <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
+<footer class="page-footer grey darken-4">
   <div class="footer-copyright">
     <div class="container">
-      © 2014 Copyright Text
-      <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+      © 2017 Copyright Steve Kornahrens
+      <a class="grey-text text-lighten-4 right" href="#!"></a>
     </div>
   </div>
 </footer>

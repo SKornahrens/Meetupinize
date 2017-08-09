@@ -7,9 +7,6 @@ $(document).ready(function() {
   //geting string and removing ?
 var GetEventData = location.search.substring(1);
 EventsToDisplay = JSON.parse(decodeURI(GetEventData));
-console.log("EventToDisplay Data:");
-console.log(EventsToDisplay);
-console.log("---------");
 // Meetup.com API Key for Steve Kornahrens
 var MeetupKey = "6a3426d1c7d3565234713b22683948";
 var Groupname;
@@ -17,11 +14,11 @@ var EventID;
 var LoopCount = 1;
 var count = 1;
 for (var i = 0; i < EventsToDisplay.length; i++) {
-    console.log("value of i: " + i);
+
     GroupName = EventsToDisplay[i].Group;
-    console.log("value of GroupName: " + GroupName);
+
     EventID = EventsToDisplay[i].EventID;
-    console.log("value of EventID: " + EventID);
+
     $.when(
       $.ajax({
         method: "GET",
@@ -33,25 +30,17 @@ for (var i = 0; i < EventsToDisplay.length; i++) {
       })
     )
     .then(function (GetGroupData, GetEventData) {
-      console.log("-----------");
-      console.log("Get Request " + LoopCount);
-
       GroupSpecificData = [];
       GroupSpecificData.push(GetGroupData[0].results[0]);
 
       EventData = [];
       EventData.push(GetEventData[0].results[0]);
 
-      console.log("Group Data: ");
-      console.log(GroupSpecificData);
-      console.log("Event Data: ")
-      console.log(EventData);
-      console.log(EventData.length)
       LoopCount++;
 
       var $EVENT = $('#LinkAggro');
         for (var x = 0; x < EventData.length; x++) {
-          var $clone = $EVENT.find('div.hide').clone(true).removeClass('hide').attr('id', 'Event' + count);
+          var $clone = $EVENT.find('a.hide').clone(true).removeClass('hide').attr('id', 'Event' + count);
           $EVENT.find('.EventList').append($clone);
 
           //Date Creation before assigning to EventLocation and EventTime
@@ -89,28 +78,37 @@ for (var i = 0; i < EventsToDisplay.length; i++) {
           h = h<10?+h:h;
           var time = h+":"+m+" "+dd;
           //Event Date and Time
-          $("#Event" + count + " .EventTimeDate").text(newdate + " " + time);
+          $("#Event" + count + " .EventTimeDate").find("p").text(newdate + " at " + time);
           //Event Group, Event Name, and Event ID
-          $("#Event" + count + " .GroupName").text(EventData[x].group.name);
-          $("#Event" + count + " .EventName").text(EventData[x].name);
-          $("#Event" + count + " .EventID").text(EventData[x].id);
+          $("#Event" + count + " .GroupName").find("h5").text(EventData[x].group.name);
+          $("#Event" + count + " .EventName").find("h5").text(EventData[x].name);
 
           //Group Photo
           if (!GroupSpecificData[0].group_photo) {
-            $("#Event" + count + " .PhotoLink").attr('src', "http://via.placeholder.com/100x100");
-            $("#Event" + count + " .PhotoLink").attr('alt', GroupSpecificData[0].name + " has no logo");
+            var colors = ['#e1f7d5', '#ffbdbd', '#c9c9ff', '#f1cbff'];
+            var random_color = colors[Math.floor(Math.random() * colors.length)];
+            $("#Event" + count + " .GroupPhoto").css('backgroundColor', random_color);
+            $("#Event" + count + " .GroupPhoto").find("p").text(EventData[x].group.name);
+
+            // $("#Event" + count + " .PhotoLink").attr('src', "http://via.placeholder.com/100x100");
+            // $("#Event" + count + " .PhotoLink").attr('alt', GroupSpecificData[0].name + " has no logo");
           } else {
-            $("#Event" + count + " .PhotoLink").attr('src', GroupSpecificData[0].group_photo.thumb_link);
+            $("#Event" + count + " .PhotoLink").attr('src', GroupSpecificData[0].group_photo.photo_link);
             $("#Event" + count + " .PhotoLink").attr('alt', GroupSpecificData[0].name + " logo");
           }
           //if statement to check if the EventData Object contains a venue key
           if (!EventData[x].venue) {
-            $("#Event" + count + " .EventLocation").text("Location Not Selected");
+            $("#Event" + count + " .EventLocation").find("p").text("Location Not Yet Selected");
           } else {
-            $("#Event" + count + " .EventLocation").text(EventData[x].venue.name);
+            $("#Event" + count + " .EventLocation").find("p").text(EventData[x].venue.name);
           }
+          //Can call and create description
+          // $("#Event" + count + " .EventDescription").html(EventData[x].description)
 
-          //Creates Object Key Event# with array value Group Name and Event ID numbers for each event
+          //Appends link to a tag
+          $("#Event" + count).attr('href', EventData[x].event_url);
+
+
           //count iterates so loops to create a new Event id for each Event
           count++;
         }
@@ -119,6 +117,14 @@ for (var i = 0; i < EventsToDisplay.length; i++) {
     });
 
 };
+
+$(".Event")
+  .mouseenter(function() {
+    $(this).toggleClass("cyan lighten-5");
+  })
+  .mouseleave(function() {
+    $(this).toggleClass("cyan lighten-5");
+  });
 
 //document ready end
 });

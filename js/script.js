@@ -1,8 +1,13 @@
-var SelectedEvents = [];
+//Needed Variables
+
+// Meetup.com API Key for Steve Kornahrens
+var MeetupKey = "6a3426d1c7d3565234713b22683948";
+
+//Variables needed for Data Gathering and Looping
+var GroupData = [];
+var GroupURLs = [];
 
 $(document).ready(function() {
-
-
 
 $('.datepicker').pickadate({
   selectMonths: true, // Creates a dropdown to control month
@@ -12,6 +17,11 @@ $('.datepicker').pickadate({
   close: 'Ok',
   closeOnSelect: true // Close upon selecting a date,
 });
+
+SetDefaultStartDate = new Date();
+$('#StartDate').val(SetDefaultStartDate);
+SetDefaultEndDate = new Date(SetDefaultStartDate.setDate(SetDefaultStartDate.getDate() + 7));
+$('#EndDate').val(SetDefaultEndDate);
 
 // Editable Group Table
 var $TABLE = $('#Table');
@@ -50,11 +60,13 @@ $BTN.click(function () {
   });
 
   // Turn all existing rows into a loopable array
+  GroupData = [];
   $rows.each(function () {
     var $td = $(this).find('td');
     var h = {};
 
     // Grabs hidden header (group) to create an object key
+
     headers.forEach(function (header, i) {
       h[header] = $td.eq(i).text();
     });
@@ -64,33 +76,42 @@ $BTN.click(function () {
 
   //URL parser for GroupData
   var parser = document.createElement("a");
+  //Clears GroupURLs so multiple button presses (error) can be caught
+  GroupURLs = [];
+
   for (var i = 0; i < GroupData.length; i++) {
     parser.href= GroupData[i].group;
     GroupURLs.push(parser.pathname.replace(/\//g, ""));
   }
 });
 
-
-// Meetup.com API Key for Steve Kornahrens
-var MeetupKey = "6a3426d1c7d3565234713b22683948";
-
-//Variables needed for Data Gathering and Looping
-var EventData = [];
-var GroupData = [];
-var GroupURLs = [];
-var GroupSpecificData = [];
+//Variables Shared between #GetData and #GetSelectedEvents click function
 var GroupEventPairs = {};
-var TestGroup = {};
-//var count is used to create unique IDs for each event appended to #ListAggro
-var count = 1;
-var PassedUrl;
-
+var SelectedEvents = [];
+var StartDate = new Date();
+var EndDate = StartDate + 7;
 
 //Gets Group Event Data for Each Group Given
 $("#GetData").click(function(){
-  //Saves Start and End Dates;
-  var StartDate = new Date($('#StartDate').val());
-  var EndDate = new Date($('#EndDate').val());
+  //Clears Events posted and array containing selected events. Can reuse web load without refreshing
+  $(".EventPosted").remove();
+  GroupEventPairs = {};
+  SelectedEvents = [];
+
+  //Variables scoped to only #GetData click function
+  var URLofGroups = [];
+  var GroupSpecificData = [];
+  var URLofGroups;
+  var EventData = [];
+  var PassedUrl;
+
+  //var count is used to create unique IDs for each event appended to #ListAggro
+  var count = 1;
+
+  // Saves Start and End Dates
+  StartDate = new Date($('#StartDate').val());
+  EndDate = new Date($('#EndDate').val());
+
   //Loops through given Group URLs
   for (var i = 0; i < GroupURLs.length; i++) {
     //PassedUrl = Group Name represented by an index of GroupURLs
@@ -117,24 +138,14 @@ $("#GetData").click(function(){
         var EventObject = EventData[j];
 
         for (var x = 0; x < EventObject.length; x++) {
-          var $clone = $EVENT.find('div.hide').clone(true).removeClass('hide').attr('id', 'Event' + count);
+          var DateChecker = new Date(EventObject[x].time);
+          if (DateChecker >= StartDate && DateChecker <= EndDate ) {
+          var $clone = $EVENT.find('div.hide').clone(true).removeClass('hide').attr('id', 'Event' + count).addClass('EventPosted');
           $EVENT.find('.EventList').append($clone);
 
-          //Date Creation before assigning to EventLocation and EventTime
-          console.log("-------");
-          console.log("Start Date");
-          console.log(StartDate);
-          console.log("End Date");
-          console.log(EndDate);
-          console.log("Event date and time:");
-          console.log(new Date(EventObject[x].time));
-          var date = new Date(EventObject[x].time);
 
-          if (date >= StartDate && date <= EndDate ) {
-            console.log("Falls between start and end dates");
-          } else {
-            console.log("Does not fall between start and end dates");
-          }
+          //Date Creation before assigning to EventLocation and EventTime
+          var date = new Date(EventObject[x].time);
           var month = date.getUTCMonth() + 1;
 
           //Converts .getUTCDay into an actual day of the week to create var newdate
@@ -168,27 +179,24 @@ $("#GetData").click(function(){
           h = h<10?+h:h;
           var time = h+":"+m+" "+dd;
           //Event Date and Time
-          $("#Event" + count + " .EventTimeDate").text(newdate + " " + time);
+          $("#Event" + count + " .EventTimeDate").find("p").text(newdate + " at " + time);
           //Event Group, Event Name, and Event ID
-          $("#Event" + count + " .GroupName").text(EventObject[x].group.name);
-          $("#Event" + count + " .EventName").text(EventObject[x].name);
-
-          //Can save Event ID to a div but unneeded by user
-          // $("#Event" + count + " .EventID").text(EventData[x].id);
+          $("#Event" + count + " .GroupName").find("h5").text(EventObject[x].group.name);
+          $("#Event" + count + " .EventName").find("h5").text(EventObject[x].name);
 
           //Group Photo
           if (!GroupSpecificData[0].group_photo) {
             $("#Event" + count + " .PhotoLink").attr('src', "http://via.placeholder.com/100x100");
             $("#Event" + count + " .PhotoLink").attr('alt', GroupSpecificData[0].name + " has no logo");
           } else {
-            $("#Event" + count + " .PhotoLink").attr('src', GroupSpecificData[0].group_photo.thumb_link);
+            $("#Event" + count + " .PhotoLink").attr('src', GroupSpecificData[0].group_photo.photo_link);
             $("#Event" + count + " .PhotoLink").attr('alt', GroupSpecificData[0].name + " logo");
           }
           //if statement to check if the EventData Object contains a venue key
           if (!EventObject[x].venue) {
-            $("#Event" + count + " .EventLocation").text("Location Not Selected");
+            $("#Event" + count + " .EventLocation").find("p").text("Location Not Yet Selected");
           } else {
-            $("#Event" + count + " .EventLocation").text(EventObject[x].venue.name);
+            $("#Event" + count + " .EventLocation").find("p").text(EventObject[x].venue.name);
           }
 
           //Creates Object Key Event# with array value Group Name and Event ID numbers for each event
@@ -196,28 +204,32 @@ $("#GetData").click(function(){
           GroupEventPairs["#Event" + count].push(EventObject[x].group.urlname);
           GroupEventPairs["#Event" + count].push(EventObject[x].id);
 
-
           //count iterates so loops to create a new Event id for each Event
           count++;
         }
         //Create Event List - for loop
+      }
+      //DateCheker if statement end
       }
       //end of .then(function (data)
     })
     //end of get data for loop
   };
   //end of onclick event at #GetData
+  $("#GetSelectedEvents").removeClass("hide");
+  $("#LinkAggro").removeClass("hide")
 });
 
 //Event Listener for highlighting tables
 
 $(".Event").click(function(){
-  $(this).toggleClass("teal EventSelected");
+  $(this).toggleClass("white EventSelected cyan lighten-5");
 });
-var URLofGroups;
 
 //Create array containing Event Information
 $("#GetSelectedEvents").click(function() {
+  SelectedEvents = [];
+  URLofGroups = [];
   $(".EventSelected").each(function (){
     for (var e = 0; e < Object.keys(GroupEventPairs).length; e++) {
       if (("#" + this.id) === Object.keys(GroupEventPairs)[e]) {
@@ -237,20 +249,9 @@ $("#GetSelectedEvents").click(function() {
     //comparing selections to keys in GroupEventPairs end
   })
   URLofGroups = encodeURI(JSON.stringify(SelectedEvents));
-  console.log(URLofGroups);
-  console.log(JSON.parse(decodeURI(URLofGroups)));
   window.open("shareablelink.html?" + URLofGroups)
   // GetSelectedEvents End
 });
 
-
 //end of document ready
 });
-
-
-
-// Fetch Specific Event Data https://api.meetup.com/2/events?key=6a3426d1c7d3565234713b22683948&group_urlname=Denver-Tech-Design-Community&event_id=241350598&sign=true
-//
-
-// Fetch specific Group Data https://api.meetup.com/2/groups?key=6a3426d1c7d3565234713b22683948&group_urlname=Denver-Tech-Design-Community&sign=true
-//
