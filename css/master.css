@@ -50,10 +50,6 @@ footer {
   padding-bottom: 1em;
 }
 
-#LinkAggro {
-  background: #039be5;
-}
-
 #TableHeader {
   display: flex;
   justify-content: space-between;
@@ -79,7 +75,18 @@ footer {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0 auto;
+  height: 100px;
+  max-width: 100px;
+}
+
+.GroupName {
+  margin-left: 0;
+}
+
+.MissingPhoto {
+  color: #ffffff;
+  padding: 0;
+  margin: 0;
 }
 
 .GroupInfo{

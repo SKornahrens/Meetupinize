@@ -6,6 +6,12 @@ html, body {
   height: 100%;
 }
 
+footer {
+  margin-top: 200px;
+  width: 100%;
+  color: #ffffff;
+}
+
 #LinkAggro{
   height: 100%;
   padding: .5em;

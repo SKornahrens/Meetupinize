@@ -3,59 +3,82 @@
   <head>
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Link animate.css-->
+    <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
     <!--Import materialize.css-->
     <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
-    <!--Link master.css-->
-    <link type="text/css" rel="stylesheet" href="css/master.css"/>
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/css/materialize.min.css">
-    <!-- Compiled and minified JavaScript -->
+    <!--Link master.css-->
+    <link type="text/css" rel="stylesheet" href="css/shareablelink.css"/>
+
+
     <meta charset="utf-8">
     <title>Meetupinize Shareable Link</title>
   </head>
-  <body class="container">
-    <h1 class="header center">Meetupinize</h1>
-    <h5 class="header center">Sharing Multiple Upcoming Meetup.com Events Made Easy</h5>
+  <body>
+    <div class="Headers">
+      <h1 class="header center NameofSite">Meetupinize</h1>
+      <h5 class="header center DescofSite">Sharing Multiple Upcoming Meetup Events Made Easy</h5>
+    </div>
+
 
 
     <div class="row">
-      <div id="LinkAggro" class="col s12 m10 l10 offset-l1">
+      <div id="LinkAggro" class="col s12 m12 l12">
 
-        <div class="EventList">
+        <div class="EventList animated bounceInDown">
 
-          <div class="col s12 m10 l10 offset-l1 Event waves-effect waves-teal hide">
-            <div class="">
-              <div class="row">
-                <div class="GroupPhoto col l2">
-                  <img src="http://via.placeholder.com/100x100" alt="placeholder" class="PhotoLink">
+          <a class="EventLink hide" href="" target="_blank">
+          <div class="col s12 m4 l4 Event z-depth-2">
+
+              <div class="row GroupInfo">
+                <div class="GroupPhoto col l3">
+                  <img src="" alt="" class="PhotoLink">
+                  <p class="MissingPhoto"></p>
                 </div>
-                <div>
-                </div>
-                <div class="GroupName col l10">
-                </div>
-                <div class="EventName col l10">
+                <div class=" GroupName col l9">
+                  <h5 class=""></h5>
                 </div>
               </div>
 
-            <!-- Can save Event ID to a div but unneeded by user
-            <div class="row">
-              <div class="EventID col l1">
+              <div class="EventInfo row">
+                <div class="col l12 EventName">
+                  <h5></h5>
+                </div>
               </div>
-            </div> -->
-              <div class="row">
-                <div class="EventTimeDate col l4">
+              <div class="col l12">
+                <div class=" EventTimeDate col l8">
+                  <h6>Date and Time:</h6>
+                  <p></p>
                 </div>
                 <div class="EventLocation col l4">
+                  <h6>Location:</h6>
+                  <p></p>
                 </div>
               </div>
+              <!-- Ignoring Description for now -->
+              <!-- <div class="row">
+                <div class="EventDescription">
+                </div>
+              </div> -->
             </div>
+            </a>
           </div>
 
         </div>
       </div>
     </div>
 
-
+    <footer class="page-footer">
+      <div class="footer-copyright">
+        <div class="container">
+          © 2017 Copyright Steve Kornahrens
+          <a class="grey-text text-lighten-4 right" href="#!"></a>
+        </div>
+      </div>
+    </footer>
     <!--Import jQuery before materialize.js-->
 
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>

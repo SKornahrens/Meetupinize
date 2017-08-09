@@ -49,9 +49,15 @@
               <tr>
                 <th class="hide">Group</th>
               </tr>
+              <tr class="GroupPosted">
+                <td id="EnterGroupHere" contenteditable="true" placeholder="Example: https://www.meetup.com/Denver-Tech-Design-Community/"></td>
+                <td>
+                  <a id="RemoveGroup" class="btn-floating waves-effect waves-light red"><i class="material-icons small">remove</i></a>
+                </td>
+              </tr>
           <!-- Hidden Table Row that is activated when hitting Add Link button -->
           <tr class="hide GroupPosted">
-            <td id="EnterGroupHere" contenteditable="true" placeholder="Ex: https://www.meetup.com/Denver-Tech-Design-Community/"></td>
+            <td id="EnterGroupHere" contenteditable="true" placeholder="Example: https://www.meetup.com/Denver-Tech-Design-Community/"></td>
             <td>
               <a id="RemoveGroup" class="btn-floating waves-effect waves-light red"><i class="material-icons small">remove</i></a>
             </td>
@@ -74,27 +80,22 @@
       <div class="col s12 m12 l12 z-depth-2 Event waves-effect waves-light-blue white hide">
         <div class="">
           <div class="row GroupInfo">
-            <div class="GroupPhoto col l3">
-              <img src="" alt="placeholder" class="PhotoLink">
+            <div class="GroupPhoto col l2">
+              <img src="" alt="" class="PhotoLink">
+              <p class="MissingPhoto"></p>
             </div>
-            <div class=" GroupName col l9">
+            <div class="GroupName col l10">
               <h5 class=""></h5>
             </div>
           </div>
-
           <div class="EventInfo row">
             <div class="col l12 EventName">
               <h5></h5>
             </div>
           </div>
 
-        <!-- Can save Event ID to a div but unneeded by user
-        <div class="row">
-          <div class="EventID col l1">
-          </div>
-        </div> -->
           <div class="row">
-            <div class=" EventTimeDate col l8">
+            <div class=" EventTimeDate col l4">
               <h6>Date and Time:</h6>
               <p></p>
             </div>
@@ -119,7 +120,7 @@
 
 
 <!--Footer-->
-<footer class="page-footer grey darken-4">
+<footer class="page-footer">
   <div class="footer-copyright">
     <div class="container">
       © 2017 Copyright Steve Kornahrens

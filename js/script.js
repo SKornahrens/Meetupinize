@@ -186,8 +186,10 @@ $("#GetData").click(function(){
 
           //Group Photo
           if (!GroupSpecificData[0].group_photo) {
-            $("#Event" + count + " .PhotoLink").attr('src', "http://via.placeholder.com/100x100");
-            $("#Event" + count + " .PhotoLink").attr('alt', GroupSpecificData[0].name + " has no logo");
+            var colors = ['#e1f7d5', '#ffbdbd', '#c9c9ff', '#f1cbff'];
+            var random_color = colors[Math.floor(Math.random() * colors.length)];
+            $("#Event" + count + " .GroupPhoto").css('backgroundColor', random_color);
+            $("#Event" + count + " .GroupPhoto").find("p").text(GroupSpecificData[0].name);
           } else {
             $("#Event" + count + " .PhotoLink").attr('src', GroupSpecificData[0].group_photo.photo_link);
             $("#Event" + count + " .PhotoLink").attr('alt', GroupSpecificData[0].name + " logo");
@@ -223,7 +225,7 @@ $("#GetData").click(function(){
 //Event Listener for highlighting tables
 
 $(".Event").click(function(){
-  $(this).toggleClass("white EventSelected cyan lighten-5");
+  $(this).toggleClass("white EventSelected cyan lighten-3");
 });
 
 //Create array containing Event Information
