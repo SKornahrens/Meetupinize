@@ -1,0 +1,74 @@
+/** {
+
+}*/
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/*Header Styling*/
+.Headers{
+  background: #f64060;
+  padding: .5em;
+  width: 100%;
+}
+
+.NameofSite {
+  color: #ffffff;
+  line-height: 100%;
+  margin-bottom: 0;
+  font-weight: 600;
+}
+
+.DescofSite {
+  color: #fcc6c1;
+  margin-bottom: 10px;
+}
+
+/*Event List Styling*/
+.Event {
+  border: solid;
+  display: flex;
+  flex-direction: row;
+  line-height: 0;
+}
+
+.EventLeft {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.EventTimeDate  {
+  margin-right: 1em;
+}
+
+.EventRight {
+  display: flex;
+  flex-direction: column;
+}
+
+.GroupName {
+  color: gray;
+  margin: 0;
+  padding: .5em;
+  padding-left: .5em;
+}
+
+.EventLocation {
+
+}
+
+.EventSelected {
+  background-color: blue;
+}
+
+footer {
+  margin-top: 200px;
+  width: 100%;
+  background: #f64060;
+  color: #ffffff;
+}
