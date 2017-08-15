@@ -6,10 +6,16 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
 }
 
 /*Header Styling*/
-.Headers{
+#Headers{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   background: #f64060;
   padding: .5em;
   width: 100%;
@@ -19,7 +25,7 @@ body {
   color: #ffffff;
   line-height: 100%;
   margin-bottom: 0;
-  font-weight: 600;
+  font-weight:900;
 }
 
 .DescofSite {
@@ -27,43 +33,73 @@ body {
   margin-bottom: 10px;
 }
 
+/*SubHeader Style*/
+#SubHeader {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+}
+
+
 /*Event List Styling*/
 .Event {
-  border: solid;
   display: flex;
   flex-direction: row;
-  line-height: 0;
+  border-style: groove;
+  margin-left: .5em;
+  -webkit-transition: padding .5s;
+}
+
+.Event:link {
+  color:black;
+  text-decoration: none;
+}
+
+.Event:visited {
+    color: black;
+    text-decoration: none;
+    border-color: white;
 }
 
 .EventLeft {
   display: flex;
   justify-content: center;
   align-items: center;
-
 }
 
 .EventTimeDate  {
+  margin-left: 1em;
   margin-right: 1em;
 }
 
 .EventRight {
   display: flex;
   flex-direction: column;
+  padding: .5em;
+}
+
+.EventName {
+  font-weight: 900;
 }
 
 .GroupName {
   color: gray;
-  margin: 0;
-  padding: .5em;
   padding-left: .5em;
 }
 
-.EventLocation {
-
+.EventName, .GroupName , .EventLocation {
+  margin: 0;
 }
 
+/*Event Selection Effects*/
 .EventSelected {
   background-color: blue;
+}
+
+.EventHovered {
+  padding: .5em;
 }
 
 footer {

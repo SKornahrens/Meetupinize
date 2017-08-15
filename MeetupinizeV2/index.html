@@ -2,6 +2,7 @@
 <html>
 <head>
   <!--Import Google Icon Font-->
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
   <!--Link master.css-->
   <link type="text/css" rel="stylesheet" href="css/master.css"/>
   <title>Meetupinize</title>
@@ -11,47 +12,46 @@
 
 <body>
 
-    <div class="Headers">
-      <h1 class="NameofSite">Meetupinize</h1>
-      <h5 class="DescofSite">Sharing Multiple Upcoming Meetup Events Made Easy</h5>
-    </div>
-
-<main>
-
-<form class="" action="index.html" method="post">
-  <label for="Categories">Event Category</label>
-  <select id="Categories" class="" name="Categories">
-    <option selected=""  value="" disabled>Select a Category</option>
-  </select>
-</form>
-
-<section id="DateList">
-</section>
-
-<section id="EventList">
-  <h2>Upcoming Events</h2>
-  <!--Each EventFound is appended here via Template Literal-->
-</section>
-
-
-</main>
-
-
-
-<!--Footer-->
-<footer class="page-footer">
-  <div class="footer-copyright">
-    <div class="container">
-      © 2017 Copyright Steve Kornahrens
-      <a class="grey-text text-lighten-4 right" href="#!"></a>
-    </div>
+  <div id="Headers">
+    <h1 class="NameofSite">Meetupinize</h1>
+    <h5 class="DescofSite">Sharing Multiple Upcoming Meetup Events Made Easy</h5>
   </div>
-</footer>
 
-<!--Import jQuery before materialize.js-->
+  <main>
 
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<!-- <script type="text/javascript" src="js/materialize.min.js"></script> -->
-<script type="text/javascript" src="js/script.js"></script>
+    <div id="SubHeader">
+      <h2>Upcoming Events</h2>
+      <form class="" action="index.html" method="post">
+        <label for="Categories">For:</label>
+        <select id="Categories" class="" name="Categories">
+          <option selected=""  value="" disabled>Select a Category</option>
+        </select>
+      </form>
+    </div>
+
+    <section id="EventList">
+      <!--Dynamic Date Range populated here via Template Literal  -->
+      <!--Each EventFound is appended here via Template Literal-->
+    </section>
+  </main>
+
+
+
+  <!--Footer-->
+  <footer class="page-footer">
+    <div class="footer-copyright">
+      <div class="container">
+        © 2017 Copyright Steve Kornahrens
+        <a class="grey-text text-lighten-4 right" href="#!"></a>
+      </div>
+    </div>
+  </footer>
+
+
+  <!--Script Import-->
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="js/script.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment-range/3.0.3/moment-range.js"></script>
 </body>
 </html>
