@@ -61,7 +61,7 @@ $(document).ready(function() {
             //if statement to check if the EventFound contains a venue key
             var EventLoc;
             if (!EventFound.venue) {
-              EventLoc = "Not Selected";
+              EventLoc = "Location Not Selected";
             } else {
               EventLoc = EventFound.venue.name;
             }
@@ -132,7 +132,7 @@ $(document).ready(function() {
                     //if statement to check if the EventFound contains a venue key
                     var EventLoc;
                     if (!EventFound.venue) {
-                      EventLoc = "Not Selected";
+                      EventLoc = "Location Not Selected";
                     } else {
                       EventLoc = EventFound.venue.name;
                     }
