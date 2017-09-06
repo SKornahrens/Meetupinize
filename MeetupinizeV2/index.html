@@ -22,8 +22,7 @@
 
   <main>
     <div id="SubHeader">
-      <h2 id="CityEventTitle"></h2>
-      <form id="CatSelector">
+      <form id="Form">
         <label for="CityFinder">Zip Code:</label>
         <input id="CityFinder" type="text" name="" value="80203">
         <div>
@@ -32,8 +31,10 @@
             <!--Options populated on Document ready API call to retrieve Catagory list-->
           </select>
         </div>
-        <button id= "CreateNewEventList" class="" type="submit" name="button">Create New List</button>
+        <!-- <button id= "CreateNewEventList" class="" type="submit" name="button">Create New List</button> -->
       </form>
+      <h2 id="CityEventTitle" class="animated fadeInDown"></h2>
+      <h2 id="OneSecFindingResults" class="animated flash hide">Finding your events now</h2>
     </div>
 
 
@@ -65,7 +66,7 @@
 
   <!--Script Import-->
   <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-  <script type="text/javascript" src="js/test.js"></script>
+  <script type="text/javascript" src="js/script.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment-range/3.0.3/moment-range.js"></script>
   <!--Google Analytics  -->

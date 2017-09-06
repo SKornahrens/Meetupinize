@@ -53,14 +53,20 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-top: 5px;
 }
 
-#CatSelector select {
+#Form select {
   width: 205px;
 }
 
 
 /*Event List Styling*/
+#OneSecFindingResults {
+-webkit-animation-iteration-count: infinite;
+}
+
+
 .Event {
   display: flex;
   flex-direction: row;
