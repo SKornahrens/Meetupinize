@@ -3,40 +3,38 @@
   <head>
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+        rel="stylesheet">
     <!--Link animate.css-->
     <link rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
-    <!--Import materialize.css-->
-    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
-    <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/css/materialize.min.css">
     <!--Link master.css-->
-    <link type="text/css" rel="stylesheet" href="css/shareablelink.css"/>
+    <link type="text/css" rel="stylesheet" href="css/shareablelinkv2.css"/>
 
 
     <meta charset="utf-8">
     <title>Meetupinize Shareable Link</title>
   </head>
   <body>
-    <div class="Headers">
-      <div id="TinyUrlHeader" class="left">
-        <div class="row RemoveMargin">
-          <a id="CreateTinyURL" class="btn-floating waves-effect waves-light left red darken-2"><i class="material-icons small">assignment</i></a>
+
+    <header id="Headers">
+      <div id="TinyUrlHeader">
+        <div class="RemoveMargin">
+          <i class="material-icons small">assignment</i>
           <h5 class="left TinyNote">Create Tiny Url</h5>
         </div>
         <div class="row">
           <h6 class="left TinyNote Copy"></h6>
         </div>
       </div>
-
-      <h1 class="header center NameofSite">Meetupinize</h1>
-      <h5 class="header center DescofSite">Sharing Multiple Upcoming Meetup Events Made Easy</h5>
-    </div>
+      <h1 class="NameofSite">Meetupinize</h1>
+      <h5 class="DescofSite">Finding Upcoming Meetup Events Made Easy</h5>
+    </header>
 
     <div class="row">
-      <div id="LinkAggro" class="col s12 m12 l12">
+      <div id="LinkAggro" class="col s12 m8 l12">
 
-        <div class="EventList animated bounceInDown">
+        <div class="EventList row animated bounceInDown">
 
           <a class="EventLink hide" href="" target="_blank">
           <div class="col s12 m6 l4 Event z-depth-2">
@@ -56,12 +54,12 @@
                   <h5></h5>
                 </div>
               </div>
-              <div class="col s12">
-                <div class=" EventTimeDate col s8">
+              <div class="col l12">
+                <div class=" EventTimeDate col l8">
                   <h6>Date and Time:</h6>
                   <p></p>
                 </div>
-                <div class="EventLocation col s4">
+                <div class="EventLocation col l4">
                   <h6>Location:</h6>
                   <p></p>
                 </div>
@@ -88,11 +86,23 @@
       </div>
     </footer>
     <!--Import jQuery before materialize.js-->
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+    <!-- <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/js/materialize.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment-range/3.0.3/moment-range.js"></script>
     <!-- <script type="text/javascript" src="js/materialize.min.js"></script> -->
-    <script type="text/javascript" src="js/shareablelink.js"></script>
+    <!-- <script type="text/javascript" src="js/shareablelink.js"></script> --> -->
+    <!--Google Analytics  -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-105275773-1', 'auto');
+    ga('send', 'pageview');
+
+    </script>
   </body>
 </html>
