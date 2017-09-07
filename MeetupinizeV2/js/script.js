@@ -36,11 +36,12 @@ $(document).ready(function() {
   function IsValidZipCode(zip) {
     var isValid = /^[0-9]{5}(?:-[0-9]{4})?$/.test(zip)
     if (isValid) {
+      $("#ZipError").empty()
       var CategoryChosen = $("#Categories").val()
       CreateEvents(CategoryChosen, zip)
     }
     else {
-      alert('Invalid ZipCode')
+      $("#ZipError").text('Sorry, but that\'s an invalid Zip Code')
     }
   }
 
@@ -77,7 +78,7 @@ $(document).ready(function() {
       }),
       $.ajax({
         method: "GET",
-        url: "http://maps.googleapis.com/maps/api/geocode/json?address="+ Zipcode + "&sensor=true"
+        url: "https://maps.googleapis.com/maps/api/geocode/json?address="+ Zipcode + "&sensor=true"
       })
     )
     .then(function (GetEventData, GetZipCity) {

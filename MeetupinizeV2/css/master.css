@@ -60,6 +60,9 @@ main {
   width: 205px;
 }
 
+#ZipError {
+  color: #f64060;
+}
 
 /*Event List Styling*/
 #OneSecFindingResults {
