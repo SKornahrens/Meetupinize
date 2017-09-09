@@ -120,7 +120,9 @@ $("#GetData").click(function(){
       $.ajax({
         method: "GET",
         url: "https://galvanize-cors-proxy.herokuapp.com/https://api.meetup.com/2/groups?key=" + MeetupKey + "&group_urlname=" + PassedUrl + "&sign=true"
-      }),
+      })
+      // $.get("https://galvanize-cors-proxy.herokuapp.com/https://api.meetup.com/2/groups?key=" + MeetupKey + "&group_urlname=" + PassedUrl + "&sign=true")
+      ,
       $.ajax({
         method: "GET",
         url: "https://galvanize-cors-proxy.herokuapp.com/https://api.meetup.com/2/events?key=" + MeetupKey + "&group_urlname=" + PassedUrl + "&sign=true"

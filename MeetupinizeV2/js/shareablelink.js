@@ -4,9 +4,11 @@ var GroupSpecificData = [];
 var EventData = [];
 
 $(document).ready(function() {
+  // window['moment-range'].extendMoment(moment);
   //geting string and removing ?
 var GetEventData = location.search.substring(1);
 EventsToDisplay = JSON.parse(decodeURI(GetEventData));
+console.log(EventsToDisplay);
 // Meetup.com API Key for Steve Kornahrens
 var MeetupKey = "6a3426d1c7d3565234713b22683948";
 var Groupname;
@@ -14,9 +16,7 @@ var EventID;
 var LoopCount = 1;
 var count = 1;
 for (var i = 0; i < EventsToDisplay.length; i++) {
-
     GroupName = EventsToDisplay[i].Group;
-
     EventID = EventsToDisplay[i].EventID;
 
     $.when(
@@ -35,6 +35,14 @@ for (var i = 0; i < EventsToDisplay.length; i++) {
 
       EventData = [];
       EventData.push(GetEventData[0].results[0]);
+      if($('.SetDates').text(moment(EventData[0].time).format("dddd, MMMM Do"))) {
+        $('.EventList').append(`
+          <h4 class="SetDates">${moment(EventData[0].time).format("dddd, MMMM Do")}</h4>
+          `)
+      } else {
+        console.log("already Exists");
+      }
+
 
       LoopCount++;
 
@@ -42,43 +50,8 @@ for (var i = 0; i < EventsToDisplay.length; i++) {
         for (var x = 0; x < EventData.length; x++) {
           var $clone = $EVENT.find('a.hide').clone(true).removeClass('hide').attr('id', 'Event' + count);
           $EVENT.find('.EventList').append($clone);
-
-          //Date Creation before assigning to EventLocation and EventTime
-          var date = new Date(EventData[x].time)
-          var month = date.getUTCMonth() + 1;
-
-          //Converts .getUTCDay into an actual day of the week to create var newdate
-          var weekday = new Array();
-          weekday[0] = "Sunday";
-          weekday[1] = "Monday";
-          weekday[2] = "Tuesday";
-          weekday[3] = "Wednesday";
-          weekday[4] = "Thursday";
-          weekday[5] = "Friday";
-          weekday[6] = "Saturday";
-          var dayofweek = weekday[date.getUTCDay()];
-          var day = date.getUTCDate();
-          var year = date.getUTCFullYear();
-          var newdate = dayofweek + " " + month + "/" + day + "/" + year;
-
-          //Converts given time into AM PM time to create var time
-          var d = new Date(EventData[x].time);
-          var hh = d.getHours();
-          var m = d.getMinutes();
-          var dd = "AM";
-          var h = hh;
-          if (h >= 12) {
-            h = hh-12;
-            dd = "PM";
-          }
-          if (h == 0) {
-            h = 12;
-          }
-          m = m<10?"0"+m:m;
-          h = h<10?+h:h;
-          var time = h+":"+m+" "+dd;
           //Event Date and Time
-          $("#Event" + count + " .EventTimeDate").find("p").text(newdate + " at " + time);
+          $("#Event" + count + " .EventTimeDate").find("p").text(moment(EventData[x].time).format("h:mma ") + moment(EventData[x].time).format("dddd, MMMM Do"));
           //Event Group, Event Name, and Event ID
           $("#Event" + count + " .GroupName").find("h5").text(EventData[x].group.name);
           $("#Event" + count + " .EventName").find("h5").text(EventData[x].name);
