@@ -83,8 +83,6 @@ $(document).ready(function() {
     )
     .then(function (GetEventData, GetZipCity) {
       EventData.push(GetEventData[0].results)
-      console.log(EventData)
-      console.log(EventData[0].length)
       ZipCity = GetZipCity[0].results[0].address_components[2].long_name
       var CategoryTitle = $("#Categories").find(":selected").text()
       if (EventData[0].length == 0) {
