@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="meetupinizeApp">
+  <head>
+    <meta charset="utf-8">
+    <title>Meetupinize</title>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+        rel="stylesheet">
+    <!--Link animate.css-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <!--Link master.css-->
+    <link type="text/css" rel="stylesheet" href="css/master.css"/>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.min.js" charset="utf-8"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular-route.js" charset="utf-8"></script>
+
+    <!-- App specific js files -->
+    <script src="app.module.js" charset="utf-8"></script>
+    <script src="app.config.js" charset="utf-8"></script>
+    <script src="/site-header/site-header.module.js" charset="utf-8"></script>
+    <script src="/site-header/site-header.component.js" charset="utf-8"></script>
+    <script src="/event-main/event-main.module.js" charset="utf-8"></script>
+    <script src="/event-main/event-main.component.js" charset="utf-8"></script>
+    <script src="/event-finder/event-finder.module.js" charset="utf-8"></script>
+    <script src="/event-finder/event-finder.component.js" charset="utf-8"></script>
+    <script src="/event-list/event-list.module.js" charset="utf-8"></script>
+    <script src="/event-list/event-list.component.js" charset="utf-8"></script>
+    <script src="/site-footer/site-footer.module.js" charset="utf-8"></script>
+    <script src="/site-footer/site-footer.component.js" charset="utf-8"></script>
+
+
+  </head>
+
+  <body>
+      <div id="siteContainer" ng-view></div>
+  </body>
+</html>

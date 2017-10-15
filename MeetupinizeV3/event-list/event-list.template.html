@@ -1,0 +1,15 @@
+<div id="Day0" class="animated fadeInLeft DateAdded" >
+  <h2 class="SetDate" ng-repeat="dates in $root.uniqueDates">{{dates}}</h2>
+  <a class="EventLink" href="{{event.event_url}}" target="_blank" ng-repeat="event in $root.event">
+    <div id="Event0" class="Event animated fadeInLeft">
+      <div class="EventLeft">
+        <p class="EventTimeDate">{{event.time | date:'h:mma'}}</p>
+      </div>
+      <div class="EventRight">
+        <h4 class="EventName">{{event.name}}</h4>
+        <h4 class="GroupName">{{event.group.name}}</h4>
+        <h5 class="EventLocation">{{event.venue.loc}}</h5>
+      </div>
+    </div>
+  </a>
+</div>
