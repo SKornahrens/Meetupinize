@@ -1,9 +1,5 @@
-<div ng-model="filterEventToDays($root.event, $root.uniqueDates)">
-
-</div>
 <div id="Day0" class="animated fadeInLeft DateAdded" >
   <h2 class="SetDate" ng-repeat="dates in $root.uniqueDates">{{dates}}</h2>
-
   <a class="EventLink" href="{{event.event_url}}" target="_blank" ng-repeat="event in $root.event">
     <div id="Event0" class="Event animated fadeInLeft">
       <div class="EventLeft">

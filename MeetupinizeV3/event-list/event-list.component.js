@@ -18,7 +18,7 @@ angular.
       $http.get('data/event.json').then(function(response) {
         self.event = response.data.results;
         $scope.$root.event = self.event
-        getDateRange($scope.$root.event)
+        getDateRange(self.event)
       })
 
       function getDateRange(events) {
