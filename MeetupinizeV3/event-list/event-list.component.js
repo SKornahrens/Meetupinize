@@ -18,43 +18,24 @@ angular.
       $http.get('data/event.json').then(function(response) {
         self.event = response.data.results;
         $scope.$root.event = self.event
-        getDateRange(self.event)
+        getWeekDaysAndEvents(self.event)
       })
 
-      function getDateRange(events) {
-        var allDates = []
-        events.map(event => {
-          allDates.push($filter('date')(event.time, 'EEEE, MMMM d'))
-        })
-        eliminateDuplicates(allDates)
+      // if key for date does not exist create it and push first event to new object
+      // if it does exist push data to corresponding object
+
+      function getWeekDaysAndEvents(events) {
+          var filterEventstoDays = events.reduce(function (allDates, eventData) {
+            var eventDate = $filter('date')(eventData.time, 'EEEE, MMMM d')
+            if (!allDates[eventDate]) allDates[eventDate] = []
+              allDates[eventDate].push(eventData)
+            return allDates;
+          }, {});
+          console.log(filterEventstoDays);
       }
 
-      function eliminateDuplicates(dates) {
-        var obj={}
-        var uniqueDates = []
-        for (var i=0;i<dates.length;i++) {
-          obj[dates[i]]=0
-        }
-        for (i in obj) {
-          uniqueDates.push(i)
-        }
-        $scope.$root.uniqueDates = uniqueDates
-      }
 
-      $scope.filterEventToDays = (events, uniqueDates) => {
-        var count = 0
-        events.map(event => {
-          var dateSimplified = $filter('date')(event.time, 'EEEE, MMMM d')
-          console.log(dateSimplified)
-          uniqueDates.map( date => {
-            if (dateSimplified === date) {
-              console.log("match")
-              count++
-            }
-          })
-        })
-        console.log(count);
-      }
+
 
 
     }
