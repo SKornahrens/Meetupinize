@@ -43,9 +43,6 @@ component('eventFinder', {
         $timeout(() => locations.map(el => el.classList.remove('hide')), 500)
     }
 
-
-
-
     $scope.$root.createEvents = function _createEvents(category, zipcode) {
       hideElement('.EventCityLocation')
       hideElement('.AllEvents')
@@ -81,6 +78,5 @@ component('eventFinder', {
         }, daysofweek)
         $scope.$root.sortedevents = filterEventstoDays
     }
-
   }
 });
