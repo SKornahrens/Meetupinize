@@ -4,7 +4,10 @@ angular.
   module('meetupinizeApp').
   config(['$locationProvider' ,'$routeProvider',
     function config($locationProvider, $routeProvider) {
-      $locationProvider.hashPrefix('!');
+      $locationProvider.html5Mode({
+        enabled: true,
+        requireBase: false
+      })
 
       $routeProvider.
         when('/', {
