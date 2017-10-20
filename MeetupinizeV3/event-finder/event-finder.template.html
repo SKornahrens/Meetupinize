@@ -1,17 +1,21 @@
 
 <div id="SubHeader">
-      <form id="Form">
+      <form id="Form" name="form">
+        <!--
+          ng-class="{'hasError': !form.zipcode.$valid, 'hasValid': form.zipcode.$valid}"    oninvalid="return false"
+
+        -->
         <label for="CityFinder">Zip Code:</label>
-        <input id="CityFinder" type="text" name="" value="80203">
-        <p id="ZipError"></p>
+        <input id="CityFinder" type="text" name="zipcode" ng-model="zipcode" ng-keypress="cityFinder($event)">
+        <p id="ZipError" ng-model="zipError" pattern="^[0-9]{5}(?:-[0-9]{4})?$">{{zipError}}</p>
         <div>
           <label for="Categories">For:</label>
-          <select id="Categories" class="" name="Categories">
+          <select id="Categories" class="" name="Categories" ng-model="category" ng-change="categoryChange()">
             <option ng-repeat="categories in $root.category" value="{{categories.id}}">{{categories.name}}</option>
           </select>
         </div>
         <!-- <button id= "CreateNewEventList" class="" type="submit" name="button">Create New List</button> -->
       </form>
-      <h2 id="CityEventTitle" class="animated fadeInDown"></h2>
+      <h2 id="CityEventTitle" class="animated fadeInDown EventCityLocation" ng-model="zipCity">{{zipCity}}</h2>
       <h2 id="OneSecFindingResults" class="animated flash hide">Finding your events now</h2>
 </div>

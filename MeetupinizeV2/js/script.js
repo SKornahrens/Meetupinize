@@ -170,6 +170,8 @@ $(document).ready(function() {
             $("#CityEventTitle").text(error.message)
           })
         }
+
+
         //Event Listener for Hightlighting Events
         $('#EventList').on('mouseenter', '.Event', function() {
           $(this).toggleClass("EventHovered");

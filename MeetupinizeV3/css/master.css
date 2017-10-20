@@ -1,6 +1,6 @@
-
 body {
-
+  margin: 0;
+  padding: 0;
 }
 
 #siteContainer {
@@ -70,6 +70,14 @@ main {
 
 #ZipError {
   color: #f64060;
+}
+
+.hasError {
+  border-color: #ff0000;
+}
+
+.hasValid {
+  border-color: #00ff00;
 }
 
 /*Event List Styling*/

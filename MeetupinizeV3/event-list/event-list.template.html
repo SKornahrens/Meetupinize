@@ -1,15 +1,19 @@
-<div id="Day0" class="animated fadeInLeft DateAdded">
-  <h2 class="SetDate" ng-repeat="dates in $root.uniqueDates">{{dates}}</h2>
-  <a class="EventLink" href="{{event.event_url}}" target="_blank" ng-repeat="event in $root.event">
-    <div id="Event0" class="Event animated fadeInLeft">
-      <div class="EventLeft">
-        <p class="EventTimeDate">{{event.time | date:'h:mma'}}</p>
+<div class="animated fadeInLeft DateAdded AllEvents">
+  <div ng-repeat="(date, events) in $root.sortedevents">
+    <h2 class="SetDate">{{date}}</h2>
+    <h5 class="NoEvent" ng-show="!$first" ng-if="events.length === 0">No events found for this day.</h5>
+    <h5 class="NoEvent" ng-show="$first" ng-if="events.length === 0">No events for the rest of today.</h5>
+    <a class="EventLink" href="{{event.event_url}}" target="_blank" ng-repeat="event in events">
+      <div class="Event">
+        <div class="EventLeft">
+          <p class="EventTimeDate">{{event.time | date:'h:mma'}}</p>
+        </div>
+        <div class="EventRight">
+          <h4 class="EventName">{{event.name}}</h4>
+          <h4 class="GroupName">{{event.group.name}}</h4>
+          <h5 class="EventLocation">{{event.venue.name}}</h5>
+        </div>
       </div>
-      <div class="EventRight">
-        <h4 class="EventName">{{event.name}}</h4>
-        <h4 class="GroupName">{{event.group.name}}</h4>
-        <h5 class="EventLocation">{{event.venue.loc}}</h5>
-      </div>
-    </div>
-  </a>
+    </a>
+  </div>
 </div>
