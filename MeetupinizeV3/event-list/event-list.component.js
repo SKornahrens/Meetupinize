@@ -7,6 +7,5 @@ angular.
     controller: function EventListController($scope, $http) {
       $scope.category = 34
       $scope.zipcode = 80203
-      $scope.$root.createEvents($scope.category, $scope.zipcode)
     }
   });

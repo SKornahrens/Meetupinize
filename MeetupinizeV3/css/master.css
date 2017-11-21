@@ -1,20 +1,14 @@
 body {
-  margin: 0;
-  padding: 0;
-}
-
-#siteContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: 0;
   font-family: 'Roboto', sans-serif;
-  width: 100%
 }
+
 site-header {
   width: 100%
 }
-
 
 main {
   min-height: 100vh;
@@ -32,6 +26,7 @@ main {
   align-items: center;
   background: #f64060;
   padding: .5em;
+  width: 100%;
 }
 
 .NameofSite {
@@ -72,19 +67,10 @@ main {
   color: #f64060;
 }
 
-.hasError {
-  border-color: #ff0000;
-}
-
-.hasValid {
-  border-color: #00ff00;
-}
-
 /*Event List Styling*/
 #OneSecFindingResults {
 -webkit-animation-iteration-count: infinite;
 }
-
 
 .Event {
   display: flex;
@@ -193,7 +179,6 @@ main {
 site-footer {
   height: 3em;
   width: 100%;
-
 }
 
 footer {
